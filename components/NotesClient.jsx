@@ -46,7 +46,16 @@ function NotesClient({ previousNotes }) {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/notes", {
+      // const response = await fetch("http://localhost:3000/api/notes", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ title, content }),
+      // });
+
+      //this for deployement 
+      const response = await fetch("/api/notes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +80,7 @@ function NotesClient({ previousNotes }) {
 
   const deleteNotes= async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/notes/${id}`, {
+      const response = await fetch(`/api/notes/${id}`, {
         method:"DELETE",
       });
       const result = await response.json();
@@ -102,7 +111,7 @@ const updateNote=async (id)=>{
 
   setLoading(true)
   try {
-    const response =await fetch(`http://localhost:3000/api/notes/${id}`,{
+    const response =await fetch(`/api/notes/${id}`,{
       method:"PUT",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
