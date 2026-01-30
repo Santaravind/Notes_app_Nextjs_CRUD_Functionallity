@@ -139,165 +139,146 @@ const updateNote=async (id)=>{
 
 }
 
+  
   return (
     <>
-      {/* <div className='min-h-screen mx-auto  bg-gray-700'> 
-        <h1 className='text-3xl text-center font-semibold p-3' >Notes App</h1>
-        <div className='space-y-6 grid items-center justify-center mt-4 border-0'>
-          <form action="">
-              <div className='mt-2 '>
-                <input type="text"
-            placeholder='Enter your titel'
-            className='text-white text-2xl focus:none focus:ring-1 focus:ring-pink-200 p-2 rounded-lg  '
-              />
-              </div>
-
-              <div>
-                 <textarea 
-              type="text"
-              placeholder='Write your text content'
-              className='p-4  text-lg text-white focus:none'
-
-              />
-              </div>
-              
-
-          </form>
-
-        </div>
-      </div> */}
-      <div className="space-y-6 max-w-5xl items-center justify-center">
+      <div className="space-y-6 max-w-5xl mx-auto px-3 sm:px-6 items-center justify-center">
         <form
           action=""
           onSubmit={SaveData}
-          className="bg-linear-to-r to-purple-300 from-pink-300 via-20%  p-6 rounded-lg shadow-md"
+          className="bg-linear-to-r to-purple-300 from-pink-300 via-20%
+          p-4 sm:p-6 rounded-lg shadow-md"
         >
-          <h1 className="text-xl text-gray-800 font-semibold mb-4 text-center ">
-            {" "}
-            Create New Note{" "}
+          <h1 className="text-lg sm:text-xl text-gray-800 font-semibold mb-4 text-center">
+            Create New Note
           </h1>
+
           <div className="space-y-4">
             <input
               type="text"
               placeholder="note title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-3 border-gray-400 
-            bg-blue-50
-            rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 text-sm sm:text-base border-gray-400 bg-blue-50
+              rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+
             <textarea
               placeholder="Note Content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               rows={4}
-              className="w-full p-3 border-gray-400 bg-gray-50
-            rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 text-sm sm:text-base border-gray-400 bg-gray-50
+              rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <button
               type="submit"
-              className="border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-400 rounded-lg text-white font-semibold hover:bg-pink-500"
+              className="w-full sm:w-auto border px-4 py-2
+              focus:outline-none focus:ring-2 focus:ring-blue-500
+              bg-blue-400 rounded-lg text-white font-semibold hover:bg-pink-500"
             >
               {loading ? "creating..." : "Create Note"}
             </button>
           </div>
         </form>
       </div>
-      <div className="ml-4 bg-linear-to-r to-purple-300 from-pink-300 via-20% shadow rounded-2xl max-w-4x w-4xl p-4 mt-4 ">
-        <h1 className="text-2xl font-semibold text-center">
-          Your notes :{note.length}
-         
+
+      <div
+        className="mx-auto max-w-4xl px-3 sm:px-6
+        bg-linear-to-r to-purple-300 from-pink-300 via-20%
+        shadow rounded-2xl p-4 mt-6 "
+      >
+        <h1 className="text-xl sm:text-2xl font-semibold text-center">
+          Your notes : {note.length}
         </h1>
-        <div>
-            
-        </div>
+
         <div>
           {note.map((n) => (
             <div key={n._id} className="p-3">
-              
-                {
-                  editId===n._id?(<> 
-                     <div className="space-y-4">
-                         <input
-              type="text"
-              placeholder="note title"
-              value={editTitel}
-              onChange={(e) => setEdittitle(e.target.value)}
-              className="w-full p-3 border-gray-400 
-            bg-blue-50
-            rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-            <textarea
-              placeholder="Note Content"
-              value={editContent}
-              onChange={(e) => seteditContent(e.target.value)}
-              rows={4}
-              className="w-full p-3 border-gray-400 bg-gray-50
-            rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-                    <div className="flex gap-2 ">
-                      <button 
-                      onClick={()=>updateNote(n._id)}
-                      className="bg-blue-700 text-2xl px-3 py-2 font-bold text-white rounded-lg shadow-fuchsia-50">
-                        {loading?"Saving...":"Save"}
-                      </button>
+              {editId === n._id ? (
+                <>
+                  <div className="space-y-4">
+                    <input
+                      type="text"
+                      placeholder="note title"
+                      value={editTitel}
+                      onChange={(e) => setEdittitle(e.target.value)}
+                      className="w-full p-3 text-sm sm:text-base border-gray-400 bg-blue-50
+                      rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+
+                    <textarea
+                      placeholder="Note Content"
+                      value={editContent}
+                      onChange={(e) => seteditContent(e.target.value)}
+                      rows={4}
+                      className="w-full p-3 text-sm sm:text-base border-gray-400 bg-gray-50
+                      rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+
+                    <div className="flex flex-col sm:flex-row gap-2">
                       <button
-                      onClick={concelEdit}
-                      className="bg-red-400 text-2xl font-semibold px-3 py-2 text-black rounded-lg shadow-fuchsia-50">
-                       Cancel
+                        onClick={() => updateNote(n._id)}
+                        className="bg-blue-700 text-xl px-3 py-2 font-bold text-white rounded-lg"
+                      >
+                        {loading ? "Saving..." : "Save"}
                       </button>
 
+                      <button
+                        onClick={concelEdit}
+                        className="bg-red-400 text-xl font-semibold px-3 py-2 text-black rounded-lg"
+                      >
+                        Cancel
+                      </button>
                     </div>
-                     </div>
-                   
+                  </div>
+                </>
+              ) : (
+                <>
+                  <ul
+                    className="bg-linear-to-r from-pink-300 via-red-100
+                    p-3 sm:p-4 mt-2 rounded-2xl shadow-2xl"
+                  >
+                    <li className="text-lg sm:text-2xl font-semibold text-black">
+                      {n.title}
+                    </li>
 
+                    <li className="text-base sm:text-xl font-light text-gray-500">
+                      {n.content}
+                    </li>
 
-                  </>):(<> 
-                   <ul className="bg-linear-to-r from-pink-300 via-red-100  p-3 mt-2  rounded-2xl shadow-2xl">
-                <li className="text-2xl font-semibold text-black">{n.title}</li>
-                <li className="text-xl font-light text-gray-500 ">
-                  {n.content}
-                </li>
-                <button 
-                 className="
-    text-white mt-1 ml-5 font-bold
-    bg-linear-to-r from-purple-600 via-purple-300 to-red-300
-    hover:from-purple-600 hover:via-red-400 hover:to-green-500
-    px-3 py-2 rounded-lg shadow
-    hover:cursor-pointer
-    transition-all duration-300
-  "
-                onClick={()=>startEdid(n)}
-                >
-                  Update
-                </button>
-                <button
-                  className="
-    text-blue-600 text-lg mt-1 ml-5 font-bold
-    bg-linear-to-r from-purple-600 via-purple-300 to-red-300
-    hover:from-red-600 hover:via-red-400 hover:to-red-800
-    px-3 py-2 rounded-lg shadow
-    hover:cursor-pointer hover:text-gray-600 transform
-    transition-all duration-300
-  "
-                  onClick={() => deleteNotes(n._id)}
-                >
-                  Delete
-                </button>
-              </ul>
-                  </>)
-                }
-               
+                    <button
+                      className="block sm:inline-block text-white mt-2 sm:mt-1 sm:ml-5 font-bold
+                      bg-linear-to-r from-purple-600 via-purple-300 to-red-300
+                      hover:from-purple-600 hover:via-red-400 hover:to-green-500
+                      px-3 py-2 rounded-lg shadow transition-all duration-300"
+                      onClick={() => startEdid(n)}
+                    >
+                      Update
+                    </button>
+
+                    <button
+                      className="block sm:inline-block text-blue-600 text-lg mt-2 sm:mt-1 sm:ml-5 font-bold
+                      bg-linear-to-r from-purple-600 via-purple-300 to-red-300
+                      hover:from-red-600 hover:via-red-400 hover:to-red-800
+                      px-3 py-2 rounded-lg shadow transition-all duration-300"
+                      onClick={() => deleteNotes(n._id)}
+                    >
+                      Delete
+                    </button>
+                  </ul>
+                </>
+              )}
             </div>
           ))}
         </div>
-        <div></div>
       </div>
     </>
   );
 }
 
 export default NotesClient;
+
