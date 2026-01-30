@@ -67,8 +67,8 @@ function NotesClient({ previousNotes }) {
     //   console.log(result);
       toast.success("Content create !!");
 
-           setNotes((prevNotes) => [result.data, ...prevNotes]);
-
+           setNotes((prevNotes) => [ ...prevNotes, result.data,]);
+ 
       setTitle("");
       setContent("");
     } catch (error) {
